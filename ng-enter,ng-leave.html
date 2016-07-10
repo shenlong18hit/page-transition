@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UI Router</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-animate.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <style type="text/css">
+	
+	.scrolled {
+		transition: transform 1s ease;
+		transform: translate3d(0, 0, 0);
+		position: absolute;
+	}
+	.scrolled.ng-enter {
+		  transform: translate3d(100%, 0, 0);
+	}
+	.scrolled.ng-enter-active {
+	  transform: translate3d(0, 0, 0);
+	}
+	.scrolled.ng-leave {
+	  transform: translate3d(0, 0, 0);
+	}
+	.scrolled.ng-leave-active {
+	  transform: translate3d(-100%, 0, 0);
+	}  
+
+  </style>
+</head>
+<body ng-app="app">
+  <div class="row">
+    <div class="container">
+      <h3>UI Router</h3>
+      <a ui-sref="home">Home</a> |
+      <a ui-sref="contact">Contact</a> |
+      <a ui-sref="about">About</a>
+      <hr>
+      <div ui-view class="scrolled" style=""></div>
+    </div>
+  </div>
+
+  <script>
+    angular.module('app', ['ui.router', 'ngAnimate'])
+      .config(function($urlRouterProvider, $stateProvider) {
+        $urlRouterProvider.otherwise('/');
+
+        $stateProvider
+          .state('home', {
+            url: '/',
+            template: '<h3>Home</h3><div style="background:red"><p>xxxxxxxxxxxxxxxxxxxx</p><p>xxxxxxxxxxxxxxxxxxxx</p><p>xxxxxxxxxxxxxxxxxxxx</p></div>'
+          })
+          .state('contact', {
+            url: '/contact',
+            template: '<h3>Contact</h3><div style="background:blue"><p>xxxxxxxxxxxxxxxxxxxx</p><p>xxxxxxxxxxxxxxxxxxxx</p><p>xxxxxxxxxxxxxxxxxxxx</p><p>xxxxxxxxxxxxxxxxxxxx</p></div>'
+          })
+          .state('about', {
+            url: '/about',
+            template: '<h3>About</h3><div style="background:green"><p>xxxxxxxxxxxxxxxxxxxx</p><p>xxxxxxxxxxxxxxxxxxxx</p><p>xxxxxxxxxxxxxxxxxxxx</p><p>xxxxxxxxxxxxxxxxxxxx</p></div>'
+          });
+      });
+  </script>
+</body>
+</html>
